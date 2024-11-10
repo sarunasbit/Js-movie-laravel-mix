@@ -1,4 +1,4 @@
-import ajaxServiceById from "./ajaxServiceById";
+import ajaxService from "./ajaxService";
 import moviePage from "./moviePage";
 import returnFromStorage from "./returnFromStorage";
 import calcTime from "./calcTime";
@@ -10,7 +10,7 @@ const displayMovieById = (cardTargetId, movieResultBody) => {
         movieId.preventDefault();
         //Id target
         const getMovieId = movieId.target.id;
-        let m = await ajaxServiceById(getMovieId);
+        let m = await ajaxService(null, getMovieId);
         if(m.Response == 'True') {
             if(m.Poster == 'N/A') {
                 m.Poster = `/src/scss/img/No_Image_Available.jpg`

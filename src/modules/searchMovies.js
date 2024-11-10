@@ -1,4 +1,4 @@
-import ajaxServiceByTitle from "./ajaxServiceByTitle";
+import ajaxService from "./ajaxService";
 import displayMovieById from "./displayMovieById";
 import card from "./card";
 
@@ -8,7 +8,7 @@ const searchMovie= () => {
         const movieResultBody = document.querySelector('main article .card-container') 
         const searchMovieInput = document.querySelector('.input-bar').value;
         const singleMovieBody = document.querySelector('.single-movie-info');
-        let searchResult = await ajaxServiceByTitle(searchMovieInput);
+        let searchResult = await ajaxService(searchMovieInput, null);
         //Clean both html and single movie html
         movieResultBody.innerHTML = ``;
         singleMovieBody.innerHTML = ``;

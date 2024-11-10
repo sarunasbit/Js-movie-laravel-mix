@@ -15,45 +15,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/modules/ajaxServiceById.js":
-/*!****************************************!*\
-  !*** ./src/modules/ajaxServiceById.js ***!
-  \****************************************/
+/***/ "./src/modules/ajaxService.js":
+/*!************************************!*\
+  !*** ./src/modules/ajaxService.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var ajaxServiceById = function ajaxServiceById(id) {
+var ajaxService = function ajaxService() {
+  var term = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   var url = "http://www.omdbapi.com/?apikey=";
   var key = "90d54255";
-  return fetch("".concat(url).concat(key, "&i=").concat(id, "&plot=full")).then(function (response) {
-    return response.json();
-  });
+  if (term) {
+    return fetch("".concat(url).concat(key, "&s=").concat(term, "&type=movie")).then(function (response) {
+      return response.json();
+    });
+  }
+  if (id) {
+    return fetch("".concat(url).concat(key, "&i=").concat(id, "&plot=full")).then(function (response) {
+      return response.json();
+    });
+  }
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ajaxServiceById);
-
-/***/ }),
-
-/***/ "./src/modules/ajaxServiceByTitle.js":
-/*!*******************************************!*\
-  !*** ./src/modules/ajaxServiceByTitle.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var ajaxServiceByTitle = function ajaxServiceByTitle(term) {
-  var url = "http://www.omdbapi.com/?apikey=";
-  var key = "90d54255";
-  return fetch("".concat(url).concat(key, "&s=").concat(term, "&type=movie")).then(function (response) {
-    return response.json();
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ajaxServiceByTitle);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ajaxService);
 
 /***/ }),
 
@@ -104,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _ajaxServiceById__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ajaxServiceById */ "./src/modules/ajaxServiceById.js");
+/* harmony import */ var _ajaxService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ajaxService */ "./src/modules/ajaxService.js");
 /* harmony import */ var _moviePage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./moviePage */ "./src/modules/moviePage.js");
 /* harmony import */ var _returnFromStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./returnFromStorage */ "./src/modules/returnFromStorage.js");
 /* harmony import */ var _calcTime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./calcTime */ "./src/modules/calcTime.js");
@@ -129,7 +117,7 @@ var displayMovieById = function displayMovieById(cardTargetId, movieResultBody) 
             //Id target
             getMovieId = movieId.target.id;
             _context.next = 5;
-            return (0,_ajaxServiceById__WEBPACK_IMPORTED_MODULE_0__["default"])(getMovieId);
+            return (0,_ajaxService__WEBPACK_IMPORTED_MODULE_0__["default"])(null, getMovieId);
           case 5:
             m = _context.sent;
             if (m.Response == 'True') {
@@ -217,7 +205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _ajaxServiceByTitle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ajaxServiceByTitle */ "./src/modules/ajaxServiceByTitle.js");
+/* harmony import */ var _ajaxService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ajaxService */ "./src/modules/ajaxService.js");
 /* harmony import */ var _displayMovieById__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./displayMovieById */ "./src/modules/displayMovieById.js");
 /* harmony import */ var _card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./card */ "./src/modules/card.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -237,7 +225,7 @@ var searchMovie = function searchMovie() {
           searchMovieInput = document.querySelector('.input-bar').value;
           singleMovieBody = document.querySelector('.single-movie-info');
           _context.next = 5;
-          return (0,_ajaxServiceByTitle__WEBPACK_IMPORTED_MODULE_0__["default"])(searchMovieInput);
+          return (0,_ajaxService__WEBPACK_IMPORTED_MODULE_0__["default"])(searchMovieInput, null);
         case 5:
           searchResult = _context.sent;
           //Clean both html and single movie html
