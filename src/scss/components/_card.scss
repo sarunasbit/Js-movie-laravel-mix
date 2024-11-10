@@ -1,0 +1,27 @@
+main {
+        
+    article {
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+            justify-content: center;
+            gap: 1rem;
+            margin: 0 auto;
+            .card{
+                overflow: hidden;
+                padding: 0;
+                img{
+                    object-fit:fill;
+                    flex-grow: 1;
+                    max-height: 40vh;
+                }
+                .card-body {
+                    flex: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
